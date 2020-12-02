@@ -79,4 +79,12 @@ if (ISDEV) {
   app.use(logger('dev'));
 }
 
+/**
+ * @desc LOAD ROUTES
+ */
+
+// api
+app.use('/api/photos', require('./routes/api/photosRoutes'));
+
 module.exports = app;
+

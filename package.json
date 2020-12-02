@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/airgead73/express-starter#readme",
   "devDependencies": {
-    "autoprefixer": "^10.0.2",
+    "autoprefixer": "^10.0.4",
     "bootstrap": "^4.5.3",
     "dotenv": "^8.2.0",
     "morgan": "^1.10.0",
@@ -53,7 +53,7 @@
     "express-mongo-sanitize": "^2.0.0",
     "express-rate-limit": "^5.2.3",
     "express-session": "^1.17.1",
-    "express-validator": "^6.6.1",
+    "express-validator": "^6.7.0",
     "handlebars": "^4.7.6",
     "helmet": "^4.2.0",
     "hpp": "^0.2.3",
@@ -61,7 +61,7 @@
     "memorystore": "^1.6.4",
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
-    "mongoose": "^5.10.15",
+    "mongoose": "^5.11.1",
     "xss-clean": "^0.1.1"
   },
   "browserslist": [
