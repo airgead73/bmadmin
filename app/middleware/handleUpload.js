@@ -1,6 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 
+
 const uploadImage = function(req, res, next) {
 
   const checkFileType = function(req, file, cb) {
@@ -19,9 +20,11 @@ const uploadImage = function(req, res, next) {
   }
 
   const storage = multer.diskStorage({ 
-    destination: './app/public/uploads/',
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
     filename: function(req, file, cb) {
-      cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
+      cb(null, 'temp')
     }
   });
   
@@ -40,6 +43,8 @@ const uploadImage = function(req, res, next) {
       res.locals.uploadMsg = 'No file uploaded.'
     } else {
       res.locals.uploadMsg = 'Success'
+      res.locals.success = true;
+      res.locals.uploadFile = req.file
     }
 
     next();
