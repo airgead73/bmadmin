@@ -3,7 +3,7 @@ const path = require('path');
 
 const uploadImage = function(req, res, next) {
 
-  function checkFileType(file, cb) {
+  const checkFileType = function(req, file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype);
@@ -27,19 +27,19 @@ const uploadImage = function(req, res, next) {
   
   const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 },
-    fileFilter: function(req, file, cb) {
-      checkFileType(file, cb);
-    }
+    limits: { fileSize: 1000000 },
+    fileFilter: checkFileType
   }).single('myImage');
 
   upload(req, res, (err) => {
 
     if(err) {
       res.locals.uploadMsg = err.message;
-    } else {
+    } else if (req.file == undefined) {
       console.log(req.file);
-      res.locals.uploadMsg = 'success'
+      res.locals.uploadMsg = 'No file uploaded.'
+    } else {
+      res.locals.uploadMsg = 'Success'
     }
 
     next();
