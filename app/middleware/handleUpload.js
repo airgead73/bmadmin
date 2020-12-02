@@ -3,6 +3,21 @@ const path = require('path');
 
 const uploadImage = function(req, res, next) {
 
+  function checkFileType(file, cb) {
+    const filetypes = /jpeg|jpg|png|gif/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+
+
+    if(mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Wrong file type'));
+    }
+
+  }
+
   const storage = multer.diskStorage({ 
     destination: './app/public/uploads/',
     filename: function(req, file, cb) {
@@ -12,17 +27,18 @@ const uploadImage = function(req, res, next) {
   
   const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 }
+    limits: { fileSize: 10 },
+    fileFilter: function(req, file, cb) {
+      checkFileType(file, cb);
+    }
   }).single('myImage');
 
   upload(req, res, (err) => {
 
     if(err) {
-      //res.send(`${err}`);
-      res.locals.uploadMsg = err;
+      res.locals.uploadMsg = err.message;
     } else {
       console.log(req.file);
-      //res.send('test');
       res.locals.uploadMsg = 'success'
     }
 
