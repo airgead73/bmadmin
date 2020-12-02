@@ -3,9 +3,10 @@ const router = express.Router();
 
 const photos_controller = require('../../controllers/api/photosControllers');
 const handleUpload = require('../../middleware/handleUpload');
+const handleCloud = require('../../middleware/handleCloud');
 
 router
   .route('/')
-  .post(handleUpload, photos_controller.upload);
+  .post(handleUpload, handleCloud, photos_controller.upload);
 
 module.exports = router;
