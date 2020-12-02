@@ -17,13 +17,40 @@ const fs = require('fs');
 
   if(res.locals.success) {
     const uploadedResponse = await cloudinary.uploader.upload('uploads/temp', {
-      upload_preset: 'bmadmin'
+      upload_preset: 'preset_test'
     });
     console.log(uploadedResponse);
     fs.unlinkSync('uploads/temp');
 
   }
 
-  res.send(msg);
+
+  // if(res.locals.success) {
+  //   const uploadedFile = await cloudinary.uploader.upload('uploads/temp', {
+  //     folder: 'dev/bmadmin/',
+  //     tags: 'art',
+  //     eager: [
+  //       {width: 300, height: 300, crop: 'fill'},
+  //       {
+  //         color: '#ffffff',
+  //         gravity: 'south_east',
+  //         overlay: {
+  //           font_family: 'Roboto',
+  //           font_size: 10,
+  //           text: '%C2%A9%20Brian%20Moneypenny'
+  //         },
+  //         x: 8,
+  //         y: 8
+  //       }
+  //     ]
+  //     });
+  //   console.log(uploadedFile);
+  //   fs.unlinkSync('uploads/temp');
+  //   res.json({
+  //     uploadedFile
+  //   })
+  // }
+
+  
 
  });
