@@ -1,12 +1,7 @@
-const { cloudinary } = require('../config/cloudinary');
+const { cloudinary } = require('../../config/cloudinary');
 const fs = require('fs');
 
 const uploadCloud = async function(req, res, next) {
-
-  //const reqBody = {...req.body}
-
-  // console.log(res.uploadData);
-  // console.log(reqBody);
 
   const cloudFile = await cloudinary.uploader.upload('uploads/temp', {
     folder: 'dev/bmadmin/',

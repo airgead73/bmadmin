@@ -1,6 +1,5 @@
-const asyncHandler = require('../../middleware/handleAsync');
-const { cloudinary } = require('../../config/cloudinary');
-const fs = require('fs');
+const asyncHandler = require('../../middleware/handleAsync');\
+\
 
 /**
  * @route POST /api/photos
@@ -11,8 +10,7 @@ const fs = require('fs');
  exports.upload = asyncHandler(async function(req, res) {  
 
     res.json({
-      uploadData: res.uploadData,
-      cloudData: res.cloudData
+      photoData: res.photoData
     });
 
  });
