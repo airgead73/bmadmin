@@ -1,5 +1,4 @@
-const asyncHandler = require('../../middleware/handleAsync');\
-\
+const asyncHandler = require('../../middleware/handleAsync');
 
 /**
  * @route POST /api/photos
