@@ -6,13 +6,22 @@ const handleUpload = require('../../middleware/handlePhotos/handleUpload');
 const handleCloud = require('../../middleware/handlePhotos/handleCloud');
 const handleData = require('../../middleware/handlePhotos/handleData');
 
-router
+// router
+//   .route('/')
+//   .post(
+//     handleUpload, 
+//     handleCloud, 
+//     handleData,
+//     photos_controller.upload
+//   );
+
+  router
   .route('/')
   .post(
     handleUpload, 
-    handleCloud, 
-    handleData,
+    // handleCloud, 
+    // handleData,
     photos_controller.upload
-  );
+  );  
 
 module.exports = router;
