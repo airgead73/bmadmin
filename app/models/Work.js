@@ -24,4 +24,9 @@ const WorkSchema = new mongoose.Schema({
 
 });
 
+WorkSchema.pre('deleteOne', async function (next) {
+  await this.model.apply('Photo').deleteMany({ work: this._id });
+  next();
+});
+
 module.exports = mongoose.model('Work', WorkSchema);

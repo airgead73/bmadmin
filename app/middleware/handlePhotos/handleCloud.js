@@ -26,7 +26,6 @@ const uploadCloud = async function(req, res, next) {
   });
 
   console.log('uploaded to cloud');
-  console.log(cloudFile);
 
   fs.unlinkSync('uploads/temp');
 

@@ -4,8 +4,6 @@ const path = require('path');
 
 const uploadImage = async function(req, res, next) {
 
-  console.log(req.body);
-
   const checkFileType = function(req, file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { cloudinary } = require('../config/cloudinary');
 
 const PhotoSchema = new mongoose.Schema({
   work: {
@@ -6,6 +7,10 @@ const PhotoSchema = new mongoose.Schema({
     ref: 'Work'
   },
   title: {
+    type: String,
+    trim: true
+  },
+  public_id: {
     type: String,
     trim: true
   },
@@ -40,7 +45,7 @@ const PhotoSchema = new mongoose.Schema({
     type: Number
   },
   orientation: {
-    type: Number
+    type: String
   },     
   createdAt: {
     type: Date,
@@ -51,18 +56,34 @@ const PhotoSchema = new mongoose.Schema({
 
 PhotoSchema.pre('save', function(next) {
 
-  function getOrienation(w, h) {
+  const getOrienation = function(w, h) {
+
     if(w > h) {
-      return 'landscape'
+      return  'landscape';
     } else if(w < h) {
-      return 'portrait'
+      return 'portrait';
     } else {
-      return 'square'
+      return 'square';
     }
+
   }
 
   this.orientation = getOrienation(this.width, this.height);
 
+  next();
+
 });
+
+// PhotoSchema.pre('remove', function(next) {
+
+//   console.log('delete from cloudinary');
+
+//   cloudinary.uploader.destroy(`${this.public_id}`, function(error, result) {
+//     console.log(result, error);
+//   });
+
+//   next();
+
+// });
 
 module.exports = mongoose.model('Photo', PhotoSchema);
