@@ -19,8 +19,8 @@ const handleData = require('../../middleware/handlePhotos/handleData');
   .route('/')
   .post(
     handleUpload, 
-    // handleCloud, 
-    // handleData,
+    handleCloud, 
+    handleData,
     photos_controller.upload
   );  
 
