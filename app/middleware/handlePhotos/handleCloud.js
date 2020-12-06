@@ -4,10 +4,17 @@ const Work = require('../../models/Work');
 
 const uploadCloud = async function(req, res, next) {
 
-  const work = await Work.findById(req.params.workID);
+  console.log(req.params.workID);
+
+  const work = await Work.find({ id: req.params.workID});
+
+  console.log(work.mode);
+
+  // const work = await Work.findById(req.params.workID);
+  // console.log(work);
 
   const cloudFile = await cloudinary.uploader.upload('uploads/temp', {
-    folder: `bmadmin/${work.mode}`,
+    folder: 'bmadmin/',
     tags: 'art',
     eager: [
       {width: 300, height: 300, crop: 'fill'},
