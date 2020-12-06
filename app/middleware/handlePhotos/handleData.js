@@ -6,6 +6,7 @@ const compileData = async function(req, res, next) {
   const url_copyright = res.cloudData.eager[1].secure_url;
   const url_thumbnail = res.cloudData.eager[0].secure_url;
 
+  photoData.work = req.params.workID;
   photoData.original_file = originalname;
   photoData.width = width;
   photoData.height = height;

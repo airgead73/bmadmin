@@ -5,6 +5,11 @@ const Work = require('../../models/Work');
 const works_controller = require('../../controllers/api/worksControllers');
 const handleQuery = require('../../middleware/handleQuery');
 
+// Resources
+const photosRouter = require('./photosRoutes');
+
+router.use('/:workID/photos', photosRouter);
+
 router
   .route('/')
   .get(handleQuery(Work), works_controller.get)

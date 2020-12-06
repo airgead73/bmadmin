@@ -2,18 +2,18 @@ const asyncHandler = require('../../middleware/handleAsync');
 
 /**
  * @route POST /api/photos
- * @desc Upload photos
+ * @desc create photos
  * @access private
  */
 
- exports.upload = asyncHandler(async function(req, res) {  
+ exports.create = asyncHandler(async function(req, res) {  
+
+  console.log(res.photoData);
 
     res.json({
+      success: true,
       photoData: res.photoData
     });
 
-    // res.json({
-    //   message: 'photo upload'
-    // })
 
  });

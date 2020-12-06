@@ -1,10 +1,13 @@
 const { cloudinary } = require('../../config/cloudinary');
 const fs = require('fs');
+const Work = require('../../models/Work');
 
 const uploadCloud = async function(req, res, next) {
 
+  const work = await Work.findById(req.params.workID);
+
   const cloudFile = await cloudinary.uploader.upload('uploads/temp', {
-    folder: 'dev/bmadmin/',
+    folder: `bmadmin/${work.mode}`,
     tags: 'art',
     eager: [
       {width: 300, height: 300, crop: 'fill'},
@@ -22,7 +25,8 @@ const uploadCloud = async function(req, res, next) {
     ]
   });
 
-  console.log('uploaded to cloud')
+  console.log('uploaded to cloud');
+  console.log(cloudFile);
 
   fs.unlinkSync('uploads/temp');
 
