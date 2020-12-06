@@ -85,7 +85,7 @@ if (ISDEV) {
 
 // api
 app.use('/api/photos', require('./routes/api/photosRoutes'));
-
+app.use('/api/works', require('./routes/api/worksRoutes'));
 
 module.exports = app;
 

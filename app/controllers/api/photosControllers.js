@@ -8,12 +8,12 @@ const asyncHandler = require('../../middleware/handleAsync');
 
  exports.upload = asyncHandler(async function(req, res) {  
 
-    // res.json({
-    //   photoData: res.photoData
-    // });
-
     res.json({
-      message: 'photo upload'
-    })
+      photoData: res.photoData
+    });
+
+    // res.json({
+    //   message: 'photo upload'
+    // })
 
  });
