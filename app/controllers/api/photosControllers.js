@@ -151,17 +151,13 @@ exports.delete = asyncHandler(async function(req, res) {
 
   // delete photo
 
-  cloudinary.uploader.destroy(`${photo.public_id}`, function(error, result) {
-    console.log(result, error);
-  });
-
-  photo = await Photo.findByIdAndRemove(req.params.photoID);
+  await photo.remove();
 
   res
     .status(200)
     .json({
       success: true,
-      msg: 'Photo is deleted.'
+      msg: `${photo.title} deleted.`
     })
 
 });

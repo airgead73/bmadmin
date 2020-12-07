@@ -4,11 +4,7 @@ const Work = require('../../models/Work');
 
 const uploadCloud = async function(req, res, next) {
 
-  console.log(req.params);
-
-  const currentWork = await Work.findById(req.params.workID);
-
-  console.log(currentWork);
+  const currentWork = await Work.findById(req.params.workID);  
 
   const cloudFile = await cloudinary.uploader.upload('uploads/temp', {
     folder: 'bmadmin/',
@@ -39,9 +35,19 @@ const uploadCloud = async function(req, res, next) {
 
 }
 
+const removeCloud = async function(req, res, next) {
+
+  cloudinary.uploader.destroy(`${this.public_id}`, function(error, result) {
+    console.log(result, error);
+  });
+
+  next();
+
+}
 
 
-module.exports = uploadCloud;
+
+module.exports = { uploadCloud, removeCloud };
 
 
 

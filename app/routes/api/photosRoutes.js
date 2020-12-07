@@ -3,7 +3,7 @@ const router = express.Router({ mergeParams: true });
 
 const photos_controller = require('../../controllers/api/photosControllers');
 const handleUpload = require('../../middleware/handlePhotos/handleUpload');
-const handleCloud = require('../../middleware/handlePhotos/handleCloud');
+const { uploadCloud } = require('../../middleware/handlePhotos/handleCloud');
 const handleData = require('../../middleware/handlePhotos/handleData');
 
 router
@@ -11,7 +11,7 @@ router
   .get(photos_controller.get)
   .post(
     handleUpload, 
-    handleCloud, 
+    uploadCloud, 
     handleData,
     photos_controller.create
   );  

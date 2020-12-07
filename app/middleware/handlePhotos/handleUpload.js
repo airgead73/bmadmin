@@ -1,5 +1,6 @@
 const multer = require('multer');
 const path = require('path');
+const Work = require('../../models/Work');
 
 
 const uploadImage = async function(req, res, next) {
@@ -48,11 +49,5 @@ const uploadImage = async function(req, res, next) {
   });  
 
 }
-
-
-
-module.exports = uploadImage;
-
-
 
 module.exports = uploadImage;

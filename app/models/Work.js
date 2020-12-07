@@ -24,8 +24,8 @@ const WorkSchema = new mongoose.Schema({
 
 });
 
-WorkSchema.pre('deleteOne', async function (next) {
-  await this.model.apply('Photo').deleteMany({ work: this._id });
+WorkSchema.pre('remove', { document: true }, async function (next) {
+  await this.model('Photo').deleteMany({ work: this._id });
   next();
 });
 

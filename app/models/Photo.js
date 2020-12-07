@@ -74,16 +74,16 @@ PhotoSchema.pre('save', function(next) {
 
 });
 
-// PhotoSchema.pre('remove', function(next) {
+PhotoSchema.pre('remove', { document: true }, function(next) {
 
-//   console.log('delete from cloudinary');
+  console.log('delete from cloudinary');
 
-//   cloudinary.uploader.destroy(`${this.public_id}`, function(error, result) {
-//     console.log(result, error);
-//   });
+  cloudinary.uploader.destroy(`${this.public_id}`, function(error, result) {
+    console.log(result, error);
+  });
 
-//   next();
+  next();
 
-// });
+});
 
 module.exports = mongoose.model('Photo', PhotoSchema);
