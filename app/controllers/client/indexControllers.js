@@ -14,3 +14,18 @@ exports.dashboard = asyncHandler(async function(req, res, next) {
     });
 
 });
+
+/**
+ * @route   GET /
+ * @desc    view dashboard
+ * @access  private
+ */
+exports.dashboard = asyncHandler(async function(req, res, next) {
+  return res
+    .status(200)
+    .render('pages/signin', {
+      success: true,
+      title: 'signin'
+    });
+
+});

@@ -109,6 +109,9 @@ if (ISDEV) {
 app.use('/api/photos', require('./routes/api/photosRoutes'));
 app.use('/api/works', require('./routes/api/worksRoutes'));
 
+// client
+app.use('/', require('./routes/client/indexRoutes'));
+
 /**
  * @desc ERROR HANDLING
  */
