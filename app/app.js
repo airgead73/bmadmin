@@ -87,5 +87,22 @@ if (ISDEV) {
 app.use('/api/photos', require('./routes/api/photosRoutes'));
 app.use('/api/works', require('./routes/api/worksRoutes'));
 
+/**
+ * @desc ERROR HANDLING
+ */
+
+app.use((error, request, response, next) => {
+
+  response.status(error.status || 500);
+
+  return response.send(error.message);
+
+});
+
+
+/**
+ * @desc EXPORT
+ */
+
 module.exports = app;
 
