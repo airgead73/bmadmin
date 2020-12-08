@@ -42,6 +42,28 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+/**
+ * @desc VIEW ENGINE
+ */
+
+const {
+  truncate,
+  stripTags,
+  formatDate,
+  select
+} = require('./utils/hbs');
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.engine('hbs', exphbs({
+  handlebars: allowInsecurePrototypeAccess(Handlebars),
+  helpers: { truncate, stripTags, formatDate, select },
+  defaultLayout: 'main',
+  extname: '.hbs',
+  layoutsDir: __dirname + '/views/layouts',
+  partialsDir: __dirname + '/views/partials'
+}));
+
 /** 
  * @desc EXPRESS MIDDLEWARE
  */
