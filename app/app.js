@@ -91,11 +91,18 @@ app.use('/api/works', require('./routes/api/worksRoutes'));
  * @desc ERROR HANDLING
  */
 
-app.use((error, request, response, next) => {
+app.use(function(req, res, next) {
+  next(createError(404, 'Resource not found'))
+})
 
-  response.status(error.status || 500);
+app.use((error, req, res, next) => {
 
-  return response.send(error.message);
+  return res
+    .status(error.status || 500)
+    .json({
+      success: false,
+      msg: error.message
+    });
 
 });
 
