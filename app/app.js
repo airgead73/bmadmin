@@ -123,9 +123,11 @@ app.use(function(req, res, next) {
 app.use((error, req, res, next) => {
 
   return res
-    .status(error.status || 500)
-    .json({
+    .status(200)
+    .render('pages/error', {
       success: false,
+      title: 'error',
+      status: error.status,
       msg: error.message
     });
 
