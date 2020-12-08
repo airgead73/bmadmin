@@ -17,6 +17,11 @@ const WorkSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  desc: {
+    type: String,
+    default: 'Decription...',
+    trim: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
