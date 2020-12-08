@@ -35,17 +35,37 @@ const uploadCloud = async function(req, res, next) {
 
 }
 
-const removeCloud = async function(req, res, next) {
+const removeCloud = (model) => async(req, res, next) => {
 
-  cloudinary.uploader.destroy(`${this.public_id}`, function(error, result) {
-    console.log(result, error);
+
+  let photos;
+  let publicIDs = [];
+
+  const workID = req.params.workID;
+
+  photos = model.find({ work: workID }).select('public_id');
+
+  const results = await photos;
+
+  results.forEach(result => {
+    publicIDs.push(result.public_id);
   });
 
-  next();
+  publicIDs.forEach(id => {
+    cloudinary.uploader.destroy(`${id}`, function(error, result) {
+      if(error) {
+        console.log(error);
+      }
+
+      return;
+
+    });   
+     
+  });
+
+  return next();
 
 }
-
-
 
 module.exports = { uploadCloud, removeCloud };
 

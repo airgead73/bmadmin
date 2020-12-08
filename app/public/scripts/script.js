@@ -6,7 +6,7 @@ form.addEventListener('submit', async function (e) {
   const formData = new FormData(form);
 
   try {
-    await fetch('/api/works/5fcd640c7d5d0bd4df4bf36c/photos', {
+    await fetch('/api/works/5fcf083252dc84ea98d65712/photos', {
       method: "POST",
       body: formData
     })

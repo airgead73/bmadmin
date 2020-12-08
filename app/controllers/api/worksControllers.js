@@ -139,7 +139,6 @@ exports.delete = asyncHandler(async function(req, res) {
 
   // delete work
   
-  //work = await Work.findByIdAndDelete(req.params.workID);
   await work.remove();
 
   res
