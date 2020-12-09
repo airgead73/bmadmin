@@ -11,10 +11,12 @@ exports.dashboard = asyncHandler(async function(req, res, next) {
 
   return res
     .status(200)
-    .render('pages/placeholder', {
+    .render('pages/index', {
       success: true,
       title: 'bmadmin',
-      script_work: false
+      script_work: true,
+      count: count,
+      works: data
     });
 
 });

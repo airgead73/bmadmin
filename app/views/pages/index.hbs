@@ -1,5 +1,23 @@
-<h1>{{title}}</h1>
-<div class="row">
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+
+  {{#each works}}
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.mode}} | {{this.category}} | {{this.material}}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago.</small>
+      </div>
+    </div>
+  </div>
+
+  {{/each}}
+
+</div>
+{{!-- <div class="row">
   <div class="col-md-3">
     <form action="/api/works" method="POST" class="card" id="form_work">
       <legend class="card-header text-center">add work</legend>
@@ -47,15 +65,13 @@
     </form>
   </div>
   <div class="col-md-8 offset-md-1">
-    <h2>works</h2>
-    <ol>
-      {{#each works}}
 
-      <li><b>{{this.mode}}</b> {{this.title}}</li>
+    {{#each works}}
 
-      {{/each}}
-    </ol>
+    {{/each}}
+
+
   </div>
-</div>
+</div> --}}
 
 
