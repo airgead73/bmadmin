@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const Work = require('../../models/Work');
 
 const index_controller = require('../../controllers/client/indexControllers');
+const handleQuery = require('../../middleware/handleQuery');
 
 router
   .route('/')
   .get(
+    handleQuery(Work),
     index_controller.dashboard
   );
 

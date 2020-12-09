@@ -6,11 +6,16 @@ const asyncHandler = require('../../middleware/handleAsync');
  * @access  private
  */
 exports.dashboard = asyncHandler(async function(req, res, next) {
+
+  const { count, data } = res.results;
+
   return res
     .status(200)
     .render('pages/index', {
       success: true,
-      title: 'dashboard'
+      title: 'dashboard',
+      count: count,
+      works: data
     });
 
 });

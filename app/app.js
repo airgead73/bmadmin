@@ -84,6 +84,9 @@ app.use(session({
  })
 }));
 
+/* bootstrap js */
+app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+
 /** 
  * @desc GLOBAL VARIABLES
  */

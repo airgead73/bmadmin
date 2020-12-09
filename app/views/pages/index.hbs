@@ -1,54 +1,61 @@
 <h1>{{title}}</h1>
-
 <div class="row">
-  <div class="col-md-4 offset-md-4">
-<form class="card" id="form_upload">
-  <legend class="card-header">
-    add work
-  </legend>
-  <div class="card-body">
-  <div class="form-group">
-    <label for="title">title</label>
-    <input type="email" class="form-control" id="title">
+  <div class="col-md-3">
+    <form action="/api/works" method="POST" class="card" id="form_work">
+      <legend class="card-header text-center">add work</legend>
+        <div class="card-body">
+        <div class="mb-3">
+          <label for="title" class="form-label">title</label>
+          <input type="text" class="form-control" name="title" id="title" autocomplete="off">        
+        </div>
+        <div class="mb-3">
+          <label for="mode">mode</label>
+          <input class="form-control" list="list_mode" id="mode" name="mode" autocomplete="off">
+          <datalist id="list_mode">
+            <option value="sculpture">
+            <option value="painting">
+            <option value="drawing">          
+          </datalist>
+        </div>
+        <div class="mb-3">
+          <label for="category">category</label>
+          <input class="form-control" list="list_category" id="category" name="category" autocomplete="off">
+          <datalist id="list_category">
+            <option value="figure">
+            <option value="wildlife">
+            <option value="stilllife"> 
+            <option value="landscape">
+            <option value="abstract">        
+          </datalist>
+        </div>
+        <div class="mb-3">
+          <label for="material">material</label>
+          <input class="form-control" list="list_material" id="material" name="material" autocomplete="off">
+          <datalist id="list_material">
+            <option value="bronze">
+            <option value="alabaster">
+            <option value="plaster"> 
+            <option value="oil and canvas">
+            <option value="pencil">        
+          </datalist>
+        </div>                  
+
+      </div>
+      <div class="d-grid card-footer">
+        <button type="submit" class="btn btn-primary mt-2 mb-2">submit work</button>
+      </div> 
+    </form>
   </div>
-  <div class="form-group">
-    <label for="mode">mode</label>
-    <select class="form-control" id="mode" name="mode">
-      <option selected disabled>choose mode</option>
-      <option value="sculpture">sculpture</option>
-      <option value="painting">painting</option>
-      <option value="drawing">drawing</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="category">category</label>
-    <select class="form-control" id="category" name="category">
-      <option selected disabled>choose category</option>
-      <option value="abstract">abstract</option>
-      <option value="figure">figure</option>
-      <option value="wildlife">wildlife</option>
-      <option value="landscape">landscape</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="material">material</label>
-    <select class="form-control" id="material" name="material">
-      <option selected disabled>choose material</option>
-      <option value="abstract">abstract</option>
-      <option value="figure">figure</option>
-      <option value="wildlife">wildlife</option>
-      <option value="landscape">landscape</option>
-    </select>
-  </div>  
-  <div class="form-group">
-    <label for="desc">description</label>
-    <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
-  </div>  
-  </div>
-  <div class="card-footer">
-    <button type="submit" class="btn btn-primary">submit work</button>    
-  </div>
-</form>
+  <div class="col-md-8 offset-md-1">
+    <h2>works</h2>
+    <ol>
+      {{#each works}}
+
+      <li><b>{{this.mode}}</b> {{this.title}}</li>
+
+      {{/each}}
+    </ol>
   </div>
 </div>
+
 

@@ -1,21 +1,47 @@
-// const form = document.getElementById('form_upload');
+async function postFormDataAsJson({ url, formData }) {
+	const plainFormData = Object.fromEntries(formData.entries());
+	const formDataJsonString = JSON.stringify(plainFormData);
 
-// form.addEventListener('submit', async function (e) {
-//   e.preventDefault();
+	const fetchOptions = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		body: formDataJsonString,
+	};
 
-//   const formData = new FormData(form);
+	const response = await fetch(url, fetchOptions);
 
-//   try {
-//     await fetch('/api/works/5fcf083252dc84ea98d65712/photos', {
-//       method: "POST",
-//       body: formData
-//     })
-//     .then(response => response.json())
-//     .then(data => console.log(data));
+	if (!response.ok) {
+		const errorMessage = await response.text();
+		throw new Error(errorMessage);
+	}
 
-//   } catch (error) {
-//     console.log(error);
-//   }
+	return response.json();
+}
 
-// });
-console.log('script loaded.')
+async function handleFormSubmit(event) {
+	event.preventDefault();
+
+	const form = event.currentTarget;
+	const url = form.action;
+
+	try {
+		const formData = new FormData(form);
+    const responseData = await postFormDataAsJson({ url, formData });
+    
+    const { success, message } = responseData;
+
+    if(success) {
+      console.log(message);
+      window.location.reload();
+    }
+    
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+const submitForm = document.getElementById("form_work");
+submitForm.addEventListener("submit", handleFormSubmit);

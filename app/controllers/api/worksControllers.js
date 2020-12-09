@@ -16,7 +16,10 @@ exports.create = asyncHandler(async function(req, res) {
 
   res
     .status(200)
-    .json({ work });
+    .json({ 
+      success: true,
+      message: `${work.title} successfully added!`
+     });
 
 });
 

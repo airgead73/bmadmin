@@ -34,7 +34,7 @@
   "homepage": "https://github.com/airgead73/express-starter#readme",
   "devDependencies": {
     "autoprefixer": "^10.0.4",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^5.0.0-beta1",
     "dotenv": "^8.2.0",
     "morgan": "^1.10.0",
     "node-sass": "^5.0.0",
@@ -64,6 +64,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.11.1",
     "multer": "^1.4.2",
+    "slugify": "^1.4.6",
     "xss-clean": "^0.1.1"
   },
   "browserslist": [

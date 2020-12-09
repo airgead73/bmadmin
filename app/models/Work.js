@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const WorkSchema = new mongoose.Schema({
   title: {
@@ -22,11 +23,19 @@ const WorkSchema = new mongoose.Schema({
     default: 'Decription...',
     trim: true
   },
+  slug: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now
   }
 
+});
+
+WorkSchema.pre('save', function (next) {
+  this.slug = slugify(this.title, { lower: true })
+  next();
 });
 
 WorkSchema.pre('remove', { document: true }, async function (next) {
