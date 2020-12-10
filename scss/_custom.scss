@@ -10,11 +10,32 @@ main > .container {
 
 .hero {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 5%;
   padding-top: 50px;
   padding-bottom: 50px;
   & .btn {
     line-height: 1;
     font-size: 2rem;
   }
+}
+
+.card-menu {
+  padding-top: 75%;
+  background-size: cover;
+  & .btn {
+    font-size: 1.25rem;
+  }
+  
+}
+
+#menu-sculpture {
+  background-image: url('/images/sculpture.jpg');
+}
+
+#menu-painting {
+  background-image: url('/images/painting.jpg');
+}
+
+#menu-drawing {
+  background-image: url('/images/drawing.jpg');
 }
