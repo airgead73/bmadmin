@@ -34,7 +34,8 @@
   "homepage": "https://github.com/airgead73/express-starter#readme",
   "devDependencies": {
     "autoprefixer": "^10.0.4",
-    "bootstrap": "^5.0.0-beta1",
+    "bootstrap": "^4.5.3",
+    "bootswatch": "^4.5.3",
     "dotenv": "^8.2.0",
     "morgan": "^1.10.0",
     "node-sass": "^5.0.0",
