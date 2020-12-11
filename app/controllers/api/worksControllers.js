@@ -1,4 +1,3 @@
-const expressMongoSanitize = require('express-mongo-sanitize');
 const asyncHandler = require('../../middleware/handleAsync');
 const Work = require('../../models/Work');
 

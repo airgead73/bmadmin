@@ -1,47 +1,80 @@
-async function postFormDataAsJson({ url, formData }) {
-	const plainFormData = Object.fromEntries(formData.entries());
-	const formDataJsonString = JSON.stringify(plainFormData);
+const worksList = document.getElementById('works_list');
+const searchBar = document.getElementById('searchBar');
+let works = [];
 
-	const fetchOptions = {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json",
-		},
-		body: formDataJsonString,
-	};
+searchBar.addEventListener('keyup', (e) => {
+	const searchString = (e.target.value).toLowerCase();
+	const filteredWorks = works.filter(work => {
+		return work.title.toLowerCase().includes(searchString);
+	});
 
-	const response = await fetch(url, fetchOptions);
+console.log(filteredWorks)
 
-	if (!response.ok) {
-		const errorMessage = await response.text();
-		throw new Error(errorMessage);
-	}
+});
 
-	return response.json();
-}
-
-async function handleFormSubmit(event) {
-	event.preventDefault();
-
-	const form = event.currentTarget;
-	const url = form.action;
-
+const loadWorks = async () => {
+	
 	try {
-		const formData = new FormData(form);
-    const responseData = await postFormDataAsJson({ url, formData });
-    
-    const { success, message } = responseData;
 
-    if(success) {
-      console.log(message);
-      window.location.reload();
-    }
-    
-	} catch (error) {
-		console.error(error);
+		const res = await fetch('/api/works');
+		const data = await res.json();
+		works = data.works.data;
+		
+
+	} catch(err) {
+
+		console.error(err);
+
 	}
+
 }
 
-const submitForm = document.getElementById("form_work");
-submitForm.addEventListener("submit", handleFormSubmit);
+loadWorks();
+
+// async function postFormDataAsJson({ url, formData }) {
+// 	const plainFormData = Object.fromEntries(formData.entries());
+// 	const formDataJsonString = JSON.stringify(plainFormData);
+
+// 	const fetchOptions = {
+// 		method: "POST",
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 			Accept: "application/json",
+// 		},
+// 		body: formDataJsonString,
+// 	};
+
+// 	const response = await fetch(url, fetchOptions);
+
+// 	if (!response.ok) {
+// 		const errorMessage = await response.text();
+// 		throw new Error(errorMessage);
+// 	}
+
+// 	return response.json();
+// }
+
+// async function handleFormSubmit(event) {
+// 	event.preventDefault();
+
+// 	const form = event.currentTarget;
+// 	const url = form.action;
+
+// 	try {
+// 		const formData = new FormData(form);
+//     const responseData = await postFormDataAsJson({ url, formData });
+    
+//     const { success, message } = responseData;
+
+//     if(success) {
+//       console.log(message);
+//       window.location.reload();
+//     }
+    
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// }
+
+// const submitForm = document.getElementById("form_work");
+// submitForm.addEventListener("submit", handleFormSubmit);)

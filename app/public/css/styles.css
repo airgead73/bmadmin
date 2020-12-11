@@ -10140,14 +10140,25 @@ main > .container {
   padding-bottom: 50px;
 }
 
-.hero .btn {
-  line-height: 1;
-  font-size: 2rem;
+.hero form {
+  position: relative;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#works_list {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  z-index: 1;
 }
 
 .card-menu {
   padding-top: 75%;
   background-size: cover;
+  border: none;
 }
 
 .card-menu .btn {
