@@ -8,9 +8,15 @@ const handleQuery = require('../../middleware/handleQuery');
 router
   .route('/')
   .get(
+    index_controller.landing
+  );
+
+router
+  .route('/works')
+  .get(
     handleQuery(Work),
     index_controller.dashboard
-  );
+  );  
 
 router
   .route('/signin')

@@ -2,7 +2,24 @@ const asyncHandler = require('../../middleware/handleAsync');
 
 /**
  * @route   GET /
- * @desc    view dashboard
+ * @desc    view landing page
+ * @access  private
+ */
+exports.landing = asyncHandler(async function(req, res, next) {
+
+  return res
+    .status(200)
+    .render('pages/index', {
+      success: true,
+      title: 'bmadmin',
+      script_work: true
+    });
+
+});
+
+/**
+ * @route   GET /works
+ * @desc    view dashboard page
  * @access  private
  */
 exports.dashboard = asyncHandler(async function(req, res, next) {
@@ -11,9 +28,9 @@ exports.dashboard = asyncHandler(async function(req, res, next) {
 
   return res
     .status(200)
-    .render('pages/index', {
+    .render('pages/works/index', {
       success: true,
-      title: 'bmadmin',
+      title: 'bmadmin | works',
       script_work: true,
       count: count,
       works: data
@@ -31,7 +48,7 @@ exports.signin = asyncHandler(async function(req, res, next) {
     .status(200)
     .render('pages/signin', {
       success: true,
-      title: 'signin'
+      title: 'bdamdin | signin'
     });
 
 });

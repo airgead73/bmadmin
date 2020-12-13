@@ -49,3 +49,11 @@ main > .container {
 #menu-drawing {
   background-image: url('/images/drawing.jpg');
 }
+
+.list-group {
+  &.works_list {
+    .work-title {
+      font-weight: bold
+    }
+  }
+}
