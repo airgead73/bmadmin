@@ -37,7 +37,8 @@ app.use(hpp());
 app.use(cors());
 app.use(mongoSanitize());
 const limiter = rateLimit({
-  windowMs: 10 * 60 * 10000, // 10 mins
+  //windowMs: 10 * 60 * 10000, // 10 mins
+  windowMs: 10 * 60 * 10,
   max: RATE_LIMIT
 });
 app.use(limiter);
