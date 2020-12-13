@@ -8,9 +8,54 @@ searchBar.addEventListener('keyup', (e) => {
 		return work.title.toLowerCase().includes(searchString);
 	});
 
-console.log(filteredWorks)
+	clearWork(worksList);
 
-});
+	displayWorks(filteredWorks, e.target.value);
+
+});	
+
+const clearWork = function(parent) {
+
+	while(parent.firstChild) {
+		parent.firstChild.remove();
+	}
+
+	return;
+
+}
+
+const noResults = function(searchStr) {
+	const span = document.createElement('span');
+	span.setAttribute('class', 'list-group-item list-group-item-action');
+	span.textContent = `No results found for "${searchStr}"`;
+
+	return span;
+
+}
+
+const createWork = function(work) {
+
+	const link = document.createElement('a');
+	link.setAttribute('href', `/works/${work._id}`);
+	link.setAttribute('class', 'list-group-item list-group-item-action');
+	link.textContent = work.title;
+
+	return link;
+
+}
+
+const displayWorks = function(worksArray, searchStr) {	
+
+	if(!worksArray.length) {
+		worksList.appendChild(noResults(searchStr));
+		return;
+	}
+
+	worksArray.forEach(item => {
+		worksList.appendChild(createWork(item));
+	});
+
+}
 
 const loadWorks = async () => {
 	
