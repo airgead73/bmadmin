@@ -2,13 +2,7 @@
 
 scss/raw.scss
 scss/prefix.scss
-scss/fontawesome
 node_modules/
 
 .env
 
-*.eot
-*.svg
-*.ttf
-*.woff
-*.woff2
