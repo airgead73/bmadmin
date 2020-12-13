@@ -1,20 +1,20 @@
-const worksList = document.getElementById('works_list');
+const resultsList = document.getElementById('works_list');
 const searchBar = document.getElementById('searchBar');
-let works = [];
+let results = [];
 
 searchBar.addEventListener('keyup', (e) => {
 	const searchString = (e.target.value).toLowerCase();
-	const filteredWorks = works.filter(work => {
-		return work.title.toLowerCase().includes(searchString);
+	const filteredResults = results.filter(item => {
+		return item.title.toLowerCase().includes(searchString);
 	});
 
-	clearWork(worksList);
+	clearResults(resultsList);
 
-	displayWorks(filteredWorks, e.target.value);
+	displayResults(filteredResults, e.target.value);
 
 });	
 
-const clearWork = function(parent) {
+const clearResults = function(parent) {
 
 	while(parent.firstChild) {
 		parent.firstChild.remove();
@@ -33,37 +33,37 @@ const noResults = function(searchStr) {
 
 }
 
-const createWork = function(work) {
+const createItem = function(item) {
 
 	const link = document.createElement('a');
-	link.setAttribute('href', `/works/${work._id}`);
+	link.setAttribute('href', `/works/${item._id}`);
 	link.setAttribute('class', 'list-group-item list-group-item-action');
-	link.textContent = work.title;
+	link.textContent = item.title;
 
 	return link;
 
 }
 
-const displayWorks = function(worksArray, searchStr) {	
+const displayResults = function(resultsArray, searchStr) {	
 
-	if(!worksArray.length) {
-		worksList.appendChild(noResults(searchStr));
+	if(!resultsArray.length) {
+		resultsList.appendChild(noResults(searchStr));
 		return;
 	}
 
-	worksArray.forEach(item => {
-		worksList.appendChild(createWork(item));
+	resultsArray.forEach(item => {
+		resultsList.appendChild(createItem(item));
 	});
 
 }
 
-const loadWorks = async () => {
+const loadResults = async () => {
 	
 	try {
 
 		const res = await fetch('/api/works');
 		const data = await res.json();
-		works = data.works.data;
+		results = data.works.data;
 		
 
 	} catch(err) {
@@ -74,52 +74,6 @@ const loadWorks = async () => {
 
 }
 
-loadWorks();
+loadResults();
 
-// async function postFormDataAsJson({ url, formData }) {
-// 	const plainFormData = Object.fromEntries(formData.entries());
-// 	const formDataJsonString = JSON.stringify(plainFormData);
 
-// 	const fetchOptions = {
-// 		method: "POST",
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 			Accept: "application/json",
-// 		},
-// 		body: formDataJsonString,
-// 	};
-
-// 	const response = await fetch(url, fetchOptions);
-
-// 	if (!response.ok) {
-// 		const errorMessage = await response.text();
-// 		throw new Error(errorMessage);
-// 	}
-
-// 	return response.json();
-// }
-
-// async function handleFormSubmit(event) {
-// 	event.preventDefault();
-
-// 	const form = event.currentTarget;
-// 	const url = form.action;
-
-// 	try {
-// 		const formData = new FormData(form);
-//     const responseData = await postFormDataAsJson({ url, formData });
-    
-//     const { success, message } = responseData;
-
-//     if(success) {
-//       console.log(message);
-//       window.location.reload();
-//     }
-    
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
-// }
-
-// const submitForm = document.getElementById("form_work");
-// submitForm.addEventListener("submit", handleFormSubmit);)
